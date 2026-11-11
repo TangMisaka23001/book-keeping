@@ -83,6 +83,10 @@ node tools/build-site.mjs            # 生成静态页到 site/（本地预览�
 
 ### 怎么更新
 
+> **首次启用（仅需一次）**：仓库 → Settings → Pages → Build and deployment →
+> Source 选 **GitHub Actions** 并保存。这一步必须由仓库所有者在网页上操作：
+> Actions 里的 `GITHUB_TOKEN` 没有 admin 权限，无法自动创建 Pages 站点。
+
 每次 push 到 `main`（包括每日同步脚本的自动提交），GitHub Actions 会：
 
 1. `node tools/ledger.mjs check` 校验账本——不配平会直接失败，**不会发布错误数据**；

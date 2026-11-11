@@ -1,0 +1,57 @@
+name: 构建并发布账本静态页
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# GitHub Pages 官方部署所需权限
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 同一时间只跑一个部署，排队而不是打断
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v4
+
+      - name: 安装 Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: 校验账本（配平 / 账户 / 缺失金额）
+        run: node tools/ledger.mjs check
+
+      - name: 生成静态站点
+        run: node tools/build-site.mjs
+
+      - name: 配置 Pages（首次自动启用）
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: 上传站点产物
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 部署到 GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -2,3 +2,6 @@
 .ssh_key
 *.pem
 *.key
+
+# 静态站点构建产物（由 GitHub Actions 生成并发布，不入库）
+/site/

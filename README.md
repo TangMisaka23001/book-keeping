@@ -11,7 +11,15 @@ bookkeeping/
 ├── accounts.bean             账户表：所有账户先在这里 open 才能用
 ├── transactions/
 │   └── 2026-11.bean          交易：按月一个文件
-├── tools/ledger.mjs          本地校验 + 报表（替代 beancount 官方工具）
+├── subscriptions.md          订阅台账（页面数据源之一）
+├── consumables.md            耗材台账（页面数据源之一）
+├── tools/
+│   ├── ledger.mjs            本地校验 + 报表（替代 beancount 官方工具）
+│   ├── ledger-core.mjs       解析核心（CLI 与站点生成器共用）
+│   ├── build-site.mjs        把账本 + 台账渲染成静态页面
+│   ├── site/                 页面样式与脚本（styles.css / app.js）
+│   └── sync.sh               每日同步脚本（定时任务调用）
+├── .github/workflows/pages.yml  push 后自动构建并发布 GitHub Pages
 └── README.md
 ```
 
@@ -63,7 +71,36 @@ node tools/ledger.mjs check          # 校验配平 + 账户是否存在
 node tools/ledger.mjs report 2026-11 # 某月收支报表
 node tools/ledger.mjs report         # 全部收支
 node tools/ledger.mjs balance        # 各账户余额
+node tools/build-site.mjs            # 生成静态页到 site/（本地预览用）
 ```
+
+## 静态展示页（GitHub Pages）
+
+订阅、耗材和真实扣费记录会自动发布成静态页面（Wallos 风格深色主题）：
+
+- 订阅总览：https://tangmisaka23001.github.io/book-keeping/
+- 耗材摊销：https://tangmisaka23001.github.io/book-keeping/consumables.html
+
+### 怎么更新
+
+每次 push 到 `main`（包括每日同步脚本的自动提交），GitHub Actions 会：
+
+1. `node tools/ledger.mjs check` 校验账本——不配平会直接失败，**不会发布错误数据**；
+2. `node tools/build-site.mjs` 生成 `site/`（构建产物不入库，见 `.gitignore`）；
+3. 上传产物并部署到 GitHub Pages。
+
+改 `subscriptions.md` / `consumables.md` / `transactions/*.bean` 后 push 即可，无需手工操作。
+需要在 Actions 页面手动触发时，用 `workflow_dispatch`（Run workflow 按钮）。
+
+### 本地预览
+
+```bash
+node tools/build-site.mjs
+npx --yes serve site        # 或直接用浏览器打开 site/index.html
+```
+
+想固定某天来预览推算结果：`SITE_TODAY=2026-12-01 node tools/build-site.mjs`
+（影响「下次扣费 / N 天后」和「已用天数 / 日均成本」）。
 
 ## 注意事项
 

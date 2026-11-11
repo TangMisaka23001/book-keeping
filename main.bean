@@ -1,0 +1,10 @@
+;; 个人复式记账账本（Beancount 格式，纯文本）
+;; 用法：所有交易写在 transactions/ 下按月分文件；这里只做 include。
+;; 校验：node tools/ledger.mjs check
+;; 报表：node tools/ledger.mjs report
+
+option "title" "个人账本"
+option "operating_currency" "CNY"
+
+include "accounts.bean"
+include "transactions/*.bean"

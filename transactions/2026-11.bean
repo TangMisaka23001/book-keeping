@@ -1,0 +1,39 @@
+;; 2026 年 11 月交易
+;; 期初余额 = 0，所以没有 Opening balances 分录；从 0 开始记。
+;; 格式：日期 状态 "收款方" "摘要"，posting 缩进两格，最后一条可省略金额（自动配平）。
+
+2026-11-06 * "RackNerd" "4GB KVM VPS 年付（$59.99/年，2026-11-06 → 2027-11-06）"
+  Expenses:Subscription       59.99 USD
+  Liabilities:CreditCard     -59.99 USD
+
+2026-11-07 * "Spaceship" "misakatang.xyz 域名年付（$2.06/年，2026-11-07 → 2027-11-07）"
+  Expenses:Subscription        2.06 USD
+  Liabilities:CreditCard      -2.06 USD
+
+2026-11-09 * "剃须刀片" "耗材，¥84，支付宝"
+  Expenses:Consumables        84.00 CNY
+  Assets:Alipay              -84.00 CNY
+
+2026-11-15 * "OpenCode Go" "月费 $10/月，信用卡支付，每月 15 号扣费"
+  Expenses:Subscription       10.00 USD
+  Liabilities:CreditCard     -10.00 USD
+
+;; 广电卡：每月 1 号从话费余额扣 35 元。2026-11-11 时余额 62 元
+;; → 说明 11-01 扣费前余额为 97，故期初按 97 入账（从 11 月开始记，之前不补）。
+2026-11-01 * "广电卡" "话费期初（按当前余额 62 + 已扣 35 推得 97）"
+  Assets:PhoneBalance:Guangdian         97.00 CNY
+  Equity:OpeningBalances     -97.00 CNY
+
+2026-11-01 * "广电卡" "月租 35 元（从话费余额扣）"
+  Expenses:Phone              35.00 CNY
+  Assets:PhoneBalance:Guangdian        -35.00 CNY
+
+;; 移动卡：每月 8 元，从话费余额扣。2026-11-11 时余额 53 元
+;; → 说明 11-01 扣费前余额为 61，故期初按 61 入账（从 11 月开始记）。
+2026-11-01 * "移动卡" "话费期初（按当前余额 53 + 已扣 8 推得 61）"
+  Assets:PhoneBalance:Mobile  61.00 CNY
+  Equity:OpeningBalances     -61.00 CNY
+
+2026-11-01 * "移动卡" "月租 8 元（从话费余额扣）"
+  Expenses:Phone               8.00 CNY
+  Assets:PhoneBalance:Mobile  -8.00 CNY

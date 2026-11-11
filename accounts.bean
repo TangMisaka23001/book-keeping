@@ -1,0 +1,36 @@
+;; 账户表：新增账户先在这里 open，再在交易里使用。
+;; 约定：英文账户名 + 中文注释；资产/负债记录金额为正，收入/权益方向由记账正负自动体现。
+
+2026-01-01 open Assets:Bank:CMB            CNY   ; 招商银行储蓄卡
+2026-01-01 open Assets:Bank:ICBC           CNY   ; 工商银行储蓄卡
+2026-01-01 open Assets:Alipay              CNY   ; 支付宝余额/余额宝
+2026-01-01 open Assets:WeChat              CNY,HKD ; 微信零钱
+2026-01-01 open Assets:Cash                CNY   ; 现金
+2026-01-01 open Assets:Fund                CNY   ; 基金账户（场外）
+2026-01-01 open Assets:Brokerage           CNY   ; 证券账户
+2026-01-01 open Assets:PhoneBalance:Guangdian CNY ; 广电卡话费余额
+2026-01-01 open Assets:PhoneBalance:Mobile   CNY   ; 移动卡话费余额
+2026-01-01 open Assets:PhoneBalance:HK       HKD   ; 香港手机号余额（5709 0122）
+
+2026-01-01 open Liabilities:CreditCard     CNY,USD ; 信用卡（欠款记负数）
+
+2026-01-01 open Income:Salary              CNY   ; 工资
+2026-01-01 open Income:Bonus               CNY   ; 奖金
+2026-01-01 open Income:Interest            CNY   ; 利息/理财收益
+2026-01-01 open Income:Refund              CNY   ; 退款
+2026-01-01 open Income:Other               CNY   ; 其他收入
+
+2026-01-01 open Expenses:Food              CNY   ; 餐饮（买菜、外卖、下馆子）
+2026-01-01 open Expenses:Transport         CNY   ; 交通（地铁、打车、加油）
+2026-01-01 open Expenses:Housing           CNY   ; 住房（房租、物业、水电燃气）
+2026-01-01 open Expenses:Shopping          CNY   ; 购物（数码、衣物）
+2026-01-01 open Expenses:Consumables       CNY   ; 日用耗材（刀片、纸巾、洗护等可摊销）
+2026-01-01 open Expenses:Subscription      CNY,USD,HKD ; 订阅（会员、软件、云服务）
+2026-01-01 open Expenses:Health            CNY   ; 医疗健康
+2026-01-01 open Expenses:Education         CNY   ; 学习（书、课程）
+2026-01-01 open Expenses:Entertainment     CNY   ; 娱乐（游戏、演出、旅行）
+2026-01-01 open Expenses:Fees              CNY   ; 手续费、利息支出
+2026-01-01 open Expenses:Phone             CNY,HKD ; 通信费（话费、宽带、广电卡月租）
+2026-01-01 open Expenses:Uncategorized     CNY   ; 未分类（先记再改）
+
+2026-01-01 open Equity:OpeningBalances     CNY,USD,HKD ; 期初余额

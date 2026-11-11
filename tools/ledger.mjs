@@ -6,7 +6,7 @@
 //   node tools/ledger.mjs balance          # 各账户余额（按币种）
 //   node tools/ledger.mjs list [YYYY-MM]   # 列出交易明细
 
-import { ROOT, MAIN, listBeanFiles, parse, money, postings } from "./ledger-core.mjs";
+import { listBeanFiles, parse, money, postings } from "./ledger-core.mjs";
 
 function check(parsed) {
   const { opens, txns, errors } = parsed;

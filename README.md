@@ -78,14 +78,14 @@ node tools/build-site.mjs            # 生成静态页到 site/（本地预览�
 
 订阅、耗材和真实扣费记录会自动发布成静态页面（Wallos 风格深色主题）：
 
-- 订阅总览：https://tangmisaka23001.github.io/book-keeping/
-- 耗材摊销：https://tangmisaka23001.github.io/book-keeping/consumables.html
+- 订阅总览：https://blog.misakatang.xyz/book-keeping/
+- 耗材摊销：https://blog.misakatang.xyz/book-keeping/consumables.html
+
+（默认的 `tangmisaka23001.github.io/book-keeping/` 会 301 跳转到这个自定义域名。）
 
 ### 怎么更新
 
-> **首次启用（仅需一次）**：仓库 → Settings → Pages → Build and deployment →
-> Source 选 **GitHub Actions** 并保存。这一步必须由仓库所有者在网页上操作：
-> Actions 里的 `GITHUB_TOKEN` 没有 admin 权限，无法自动创建 Pages 站点。
+> Pages 已启用（Source: GitHub Actions），之后不用再动仓库设置；动作跑完即可访问。
 
 每次 push 到 `main`（包括每日同步脚本的自动提交），GitHub Actions 会：
 

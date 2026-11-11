@@ -10,7 +10,7 @@
 2026-01-01 open Assets:Brokerage           CNY   ; 证券账户
 2026-01-01 open Assets:PhoneBalance:Guangdian CNY ; 广电卡话费余额
 2026-01-01 open Assets:PhoneBalance:Mobile   CNY   ; 移动卡话费余额
-2026-01-01 open Assets:PhoneBalance:HK       HKD   ; 香港手机号余额（5709 0122）
+2026-01-01 open Assets:PhoneBalance:HK       HKD   ; 香港手机号余额（5709 ****）
 
 2026-01-01 open Liabilities:CreditCard     CNY,USD ; 信用卡（欠款记负数）
 

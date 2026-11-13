@@ -37,3 +37,7 @@
 2026-11-01 * "移动卡" "月租 8 元（从话费余额扣）"
   Expenses:Phone               8.00 CNY
   Assets:PhoneBalance:Mobile  -8.00 CNY
+
+2026-11-13 * "京造维生素片" "耗材，¥135，支付宝"
+  Expenses:Consumables       135.00 CNY
+  Assets:Alipay             -135.00 CNY
